@@ -5,12 +5,14 @@
   <head>
     <meta charset = "utf-8">
     <title>Rate My Lab (Professor) - Welcome!</title>
-    <link rel = "stylesheet" href = "/css/main.css"> <!-- specifies to use css file for stylesheet -->
+    <link rel = "stylesheet" href = "/bootstrapcss/bootstrap.css"> 
+    <link rel = "stylesheet" href = "/bootstrapcss/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"><!-- specifies to use css file for stylesheet -->
+    <link href="/css/main.css" rel="stylesheet" type="text/css">
   </head>
 
   <!-- body stuff goes here -->
   <body>
-    <button type = "submit">Back</button><br> <!-- should log user out -->
+    <a class="btn btn-primary " href="/index">Back</button><br> <!-- should log user out -->
     <h1>Login Successful! <%= id %></h1>
     <h2>Select CRNs </h2>
     <div class = container1>
