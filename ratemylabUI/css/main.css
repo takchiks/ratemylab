@@ -76,10 +76,10 @@ div.scroll_list {
   border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #a337e6;
+  background: black;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #6fe71e;
+  background:blue;
 }
 .green-hover:hover {
   font: solid;

@@ -16,7 +16,6 @@ app.set("view engine", "ejs");
 app.get("/users",(req,res) =>{
     res.send("Now Home");
 });
-
 app.get("/test/:id", (req,res)=>{
     res.render("profile", {id:req.params.id});
 });
@@ -31,6 +30,9 @@ app.get("/new_lab", (req,res)=>{
 });
 app.get("/prev_lab", (req,res)=>{
     res.render("prev_lab");
+});
+app.get("/home", (req,res)=>{
+    res.render("home");
 });
 app.post("/login", (req,res)=>{
     res.render("home");
