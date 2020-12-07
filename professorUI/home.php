@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang= "en" dir= "ltr">
 
@@ -20,10 +21,10 @@
         <div class="row">
             <div class="col-12 login-form-1 bg-light">
                 <div class="d-flex m-3 justify-content-center">
-                    <a href="./config_lab" class="btnSubmit" >Configure Labs For Ratings</a>
+                    <a href="./config_lab.php" class="btnSubmit" >Configure Labs For Ratings</a>
                 </div>
                 <div class="d-flex m-3 justify-content-center">
-                    <a href="./view_rating" class="btnSubmit" >View Ratings</a>
+                    <a href="./view_rating.php" class="btnSubmit" >View Ratings</a>
                 </div>
                 <div class="d-flex m-3 justify-content-center">
                     <a href="./" class="btnSubmit" >Log out</a>

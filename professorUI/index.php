@@ -18,14 +18,14 @@
         <div class="row col-lg-5 col-12 ml-auto mr-auto">
             <div class="col-12 login-form-2">
                 <h3>Login </h3>
-                <form method="post" action="controllers/login" class="col-12">
+                <form method="post" action="controllers/login.php" class="col-12">
                     <div class="form-group row">
                         <p class="ForgetPwd font-weight-bold col-lg-4 col-md-4 col-12 col-sm-12">Username: </p>
-                        <input type="email" class="form-control col-lg-8 col-md-8 col-12 col-sm-12" placeholder="Your Email *" value="" required />
+                        <input name="username" type="text" class="form-control col-lg-8 col-md-8 col-12 col-sm-12" placeholder="Your Email *" value="" required />
                     </div>
                     <div class="form-group row">
                         <p class="ForgetPwd font-weight-bold  col-lg-4 col-md-4 col-12 col-sm-12">Password: </p>
-                        <input type="password" class="form-control col-lg-8 col-md-8 col-12 col-sm-12" placeholder="Your Password *" value="" required />
+                        <input name="password" type="password" class="form-control col-lg-8 col-md-8 col-12 col-sm-12" placeholder="Your Password *" value="" required />
                     </div> 
                     <div class="form-group d-flex justify-content-center">
                         <input name="login" type="submit" class="btnSubmit" value="Log in" />

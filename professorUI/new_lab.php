@@ -13,7 +13,7 @@
 
   <!-- body stuff goes here -->
   <body class="">
-    <a class="btn btn-dark btn-outline-primary" href="/home">Back</a><br> <!-- should log user out -->
+    <a class="btn btn-dark btn-outline-primary" href="/home.php">Back</a><br> <!-- should log user out -->
     
     <div class="container login-container bg-light">
         <div class="row">

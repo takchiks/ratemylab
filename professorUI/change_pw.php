@@ -19,7 +19,7 @@
         <h3>Change Password</h3>
         <div class="row">
             <div class="col-12 login-form-1">
-                <form method="post" action="controllers/login" class="col-12 col-lg-8 col-md-10">
+                <form method="post" action="controllers/login.php" class="col-12 col-lg-8 col-md-10">
                     <div class="form-group">
                         <h4 class="ForgetPwd font-weight-bold">Old Password </h4>
                         <input type="password" class="form-control" placeholder="Your Password *" value="" required />
