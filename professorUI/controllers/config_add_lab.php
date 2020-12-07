@@ -4,6 +4,7 @@ include "connect.php";
 if(isset($_POST['config_lab'])){
     $lab = $_POST['lab'];
     $row =$_POST['data'];
+    $lab_pass = $_POST['lab_pass'];
     for($i=0; $i<14; $i++) {
         $key = $i+1;
         $value = $row[$i];
@@ -12,8 +13,11 @@ if(isset($_POST['config_lab'])){
 
         //echo "uPDATE `RateMyLab_new`.`assignment` SET `Total_no_Questions` = $value WHERE (`lab_crn2` = $lab ) and (`Assignment_no` = $key);";
         $qry = $connections->exec("iNSERT INTO `RateMyLab_new`.`assignment`(`Total_no_Questions`, `lab_crn2`,`Assignment_no`)  VALUES($value, $lab, $key) ON DUPLICATE KEY UPDATE `Total_no_Questions` = $value ;");
+        
         }
-    }  
+    } 
+    
+    $qry = $connections->exec("uPDATE `RateMyLab_new`.`LAB` SET `Instructor_pass` = '$lab_pass'  WHERE(`Lab_Crn` = '$lab' );");
 
 }
 

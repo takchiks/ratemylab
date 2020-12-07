@@ -23,13 +23,13 @@ include "./controllers/connect.php";
         <h1 class="font-weight-bold text-white">View Lab Ratings</h1>
         <div class="row">
             <div class="col-12 login-form-1 bg-light">
-                <form method="get" action="controllers/view_detailed.php" class="col-12 col-lg-8 col-md-10">
+                <form method="get" action="view_detailed.php" class="col-12 col-lg-8 col-md-10">
                     <div class="form-group row">
                         <label class="col-1" >  </label>
-                        <label class="col-3 ForgetPwd" ><small>Lab Name</small> </label>
-                        <label class="col-2 ForgetPwd" ><small>Questions</small> </label>
-                        <label class="col-3 ForgetPwd" ><small>Rating</small> </label>
-                        <label class="col-3 ForgetPwd" ><small>Rating</small> </label>
+                        <label class="col-3 ForgetPwd" ><small><b>Lab Name</b></small> </label>
+                        <label class="col-2 ForgetPwd" ><small><b>Questions</b></small> </label>
+                        <label class="col-3 ForgetPwd" ><small><b>Interest</b></small> </label>
+                        <label class="col-3 ForgetPwd" ><small><b>Difficulty</b></small> </label>
                     </div>
                     
                     <?php 
@@ -42,6 +42,7 @@ include "./controllers/connect.php";
                             $total = 0;
                             $mean_diff = 0;
                             $total_diff = 0;
+                            $num_qs = 0;
                             // echo "sELECT * FROM RateMyLab_new.rating WHERE `Assignment_no2`= $i AND `lab_crn3`=$lab;";
                             $qry = $connections->query("sELECT * FROM RateMyLab_new.rating WHERE `Assignment_no2`= $i AND `lab_crn3`=$lab;");
                             // echo $qry; 
@@ -50,7 +51,14 @@ include "./controllers/connect.php";
                                 $total += $value['interest_rating'];
                                 $total_diff += $value['difficulty_rating'];
                             }
+                            
+                            $qry = $connections->query("sELECT * FROM RateMyLab_new.assignment WHERE `Assignment_no`= $i AND `lab_crn2`=$lab;");
+                            foreach($qry as $value){
+                                
+                                $num_qs = $value['Total_no_Questions'];
+                            }
                             if($t_rows>0 &&  $total !=0){
+
                             $mean_rating = $total/$t_rows;
                             $mean_diff = $total_diff/$t_rows;
                             
@@ -59,7 +67,7 @@ include "./controllers/connect.php";
                     <div class="form-group row">
                         <input type="radio" name="lab_rat" value="<?=$i ?>" class="form-control col-1" />
                         <h6 class="ForgetPwd font-weight-bold col-3">Lab <?=$i ?>: </h6>
-                        <label class="ForgetPwd font-weight-bold col-2"><?= $total ?></label>
+                        <label class="ForgetPwd font-weight-bold col-2"><?= $num_qs ?></label>
                         <label class="ForgetPwd font-weight-bold col-3"><?= round($mean_rating,2) ?></label>
                         <label class="ForgetPwd font-weight-bold col-3"><?= round($mean_diff,2) ?></label>
                     </div>

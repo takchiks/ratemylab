@@ -30,6 +30,7 @@ include "./controllers/connect.php";
                         <label class="col-3 ForgetPwd" >Questions </label>
                     </div>
                     <?php 
+                    $lab_pass = "";
                     if(isset($_GET['lab_crn'])){
                         $lab = $_GET['lab_crn'];
                         $qry = $connections->query("sELECT * FROM RateMyLab_new.assignment;");
@@ -50,7 +51,18 @@ include "./controllers/connect.php";
                         }else{
                                 header("Location: ./home.php");
                         }
+                        
+                        $qry = $connections->query("sELECT * FROM RateMyLab_new.LAB WHERE `Lab_Crn`=$lab limit 1 ;");
+                        // echo $qry; 
+                        foreach($qry as $value){
+                            $lab_pass = $value['Instructor_pass'];
+                        }
                         ?>
+                        
+                        <div class="form-group row">
+                            <h6 class="ForgetPwd font-weight-bold m-auto">Set/Update Lab Password: </h6>
+                            <input type="password" name="lab_pass" class="form-control col-6" value="<?=$lab_pass?>" required/>
+                        </div>
                         
                     <input hidden name="lab" value="<?=$lab ?>">
                     <div class="form-group d-flex justify-content-center row">

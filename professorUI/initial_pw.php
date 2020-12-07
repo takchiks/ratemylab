@@ -20,7 +20,7 @@
         <h1 class="font-weight-bold text-white">Welcome <?= $_SESSION['username'] ?> !</h1>
        <div class="row">
             <div class="col-12 login-form-1 bg-light">
-                <h3 class="font-weight-bold text-white">Please Reset Password </h3>
+                <h3 class="font-weight-bold text-dark">Please Reset Password </h3>
         
                 <form method="post" action="controllers/reset.php" class="col-12 col-lg-8 col-md-10">
                     <div class="form-group row">

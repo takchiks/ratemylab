@@ -1,3 +1,7 @@
+<?php 
+session_start();
+include "./controllers/connect.php";
+?>
 <!DOCTYPE html>
 <html lang= "en" dir= "ltr">
 
@@ -5,7 +9,6 @@
   <head>
     <meta charset = "utf-8">
     <title>Rate My Lab (Professor) - Welcome!</title>
-    <link href="/img/labrate_icon.png" type="image/png" rel="shortcut icon" />
     <link rel = "stylesheet" href = "bootstrap/css/bootstrap.css"> 
     <link rel = "stylesheet" href = "bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"><!-- specifies to use css file for stylesheet -->
     <link href="css/main.css" rel="stylesheet" type="text/css">
@@ -21,52 +24,39 @@
             <div class="col-12 login-form-1 bg-light">
                 <form method="post" action="./view_detailed.php" class="col-12 col-lg-8 col-md-10">
                     <div class="form-group row">
-                        <label class="col-5 ForgetPwd" >Questions </label>
+                        <label class="col-2 ForgetPwd" >Qn Number </label>
                         <label class="col-3 ForgetPwd" >Raters </label>
-                        <label class="col-3 ForgetPwd" >Ratings </label>
+                        <label class="col-3 ForgetPwd" >Interest </label>
+                        <label class="col-3 ForgetPwd" >Difficulty </label>
 
                     </div>
                     
                     <?php 
-                    if(isset($_GET['lab_crn'])){
-                        $lab = $_GET['lab_crn'];
-                        $qry = $connections->query("sELECT * FROM RateMyLab_new.assignment;");
-                        for($i = 1; $i<15; $i++){
-                            $mean_rating = 0;
-                            $total = 0;
-                            $mean_diff = 0;
-                            $total_diff = 0;
-                            // echo "sELECT * FROM RateMyLab_new.rating WHERE `Assignment_no2`= $i AND `lab_crn3`=$lab;";
-                            $qry = $connections->query("sELECT * FROM RateMyLab_new.rating WHERE `Assignment_no2`= $i AND `lab_crn3`=$lab;");
-                            // echo $qry; 
-                            $t_rows = $qry->rowCount();
-                            foreach($qry as $value){
-                                $total += $value['interest_rating'];
-                                $total_diff += $value['difficulty_rating'];
-                            }
-                            if($t_rows>0 &&  $total !=0){
-                            $mean_rating = $total/$t_rows;
-                            $mean_diff = $total_diff/$t_rows;
+                    if(isset($_GET['lab_rat'])&&isset($_GET['lab'])){
+                        $lab = $_GET['lab'];
+                        $lab_rat = $_GET['lab_rat'];
+                        // echo "sELECT Question_no, AVG(interest_rating) as interest_rating, AVG(difficulty_rating) as difficulty_rating FROM RateMyLab_new.rating WHERE `Assignment_no2`= $lab_rat AND `lab_crn3`=$lab GROUP BY Question_no ;";
+                        $qry = $connections->query("sELECT count(Question_no) as qns, Question_no, AVG(interest_rating) as interest_rating, AVG(difficulty_rating) as difficulty_rating FROM RateMyLab_new.rating WHERE `Assignment_no2`= $lab_rat AND `lab_crn3`=$lab GROUP BY Question_no ;");
                             
-
+                        foreach($qry as $rating ){
                     ?>
                     <div class="form-group row">
-                        <h6 class="ForgetPwd font-weight-bold col-5">Question 1: </h6>
-                        <label class="ForgetPwd font-weight-bold col-3">2</label>
-                        <label class="ForgetPwd font-weight-bold col-3">5</label>
+                        <h6 class="ForgetPwd font-weight-bold col-2"> <?= $rating['Question_no'] ?>: </h6>
+                        <label class="ForgetPwd font-weight-bold col-3"><?= $rating['qns'] ?></label>
+                        <label class="ForgetPwd font-weight-bold col-3"><?= $rating['interest_rating'] ?></label>
+                        <label class="ForgetPwd font-weight-bold col-3"><?= $rating['difficulty_rating'] ?></label>
                     </div>
                     
                     <?php
                     }
-                        }
-                    }else{
+                    }
+                    else{
                             header("Location: ./home.php");
                     }
                         ?>
                         
-                    <input hidden name="lab" value="<?=$lab ?>">
                     <div class="form-group d-flex justify-content-center row">
-                        <a class="btnSubmit col-4 text-center" href="./view_lab_ratings.php?lab_crn=<?=$lab ?>">Back</a>
+                        <a class="btnSubmit col-4 text-center" href="./view_lab_ratings.php?lab_crn=<?= $lab?>">Back</a>
                     </div>
                 </form>
             </div>

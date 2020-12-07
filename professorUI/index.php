@@ -21,7 +21,7 @@
                 <form method="post" action="controllers/login.php" class="col-12">
                     <div class="form-group row">
                         <p class="ForgetPwd font-weight-bold col-lg-4 col-md-4 col-12 col-sm-12">Username: </p>
-                        <input name="username" type="text" class="form-control col-lg-8 col-md-8 col-12 col-sm-12" placeholder="Your Email *" value="" required />
+                        <input name="username" type="text" class="form-control col-lg-8 col-md-8 col-12 col-sm-12" placeholder="Campus ID *" value="" required />
                     </div>
                     <div class="form-group row">
                         <p class="ForgetPwd font-weight-bold  col-lg-4 col-md-4 col-12 col-sm-12">Password: </p>
